@@ -1,23 +1,27 @@
 import Link from "next/link";
 
+import { ParticleDriftBackground } from "@/components/canvas/particle-drift-background";
 import { MagneticButton } from "@/components/motion/magnetic-button";
 import { SplitText } from "@/components/motion/split-text";
-import { HeroScene } from "@/components/three/hero-scene";
 import { Button } from "@/components/ui/button";
 import { ScrollCue } from "@/components/sections/scroll-cue";
 
 export function Hero() {
   return (
     <section className="relative flex min-h-[92vh] flex-col items-center justify-center overflow-hidden px-6 pt-24 pb-16">
+      <ParticleDriftBackground />
+
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-0 size-[600px] -translate-x-1/2 -translate-y-1/2 opacity-90 sm:size-[820px]"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-1/2 bg-gradient-to-b from-background to-transparent"
         aria-hidden="true"
-      >
-        <HeroScene />
-      </div>
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-0 h-1/3 bg-gradient-to-t from-background to-transparent"
+        aria-hidden="true"
+      />
 
       <div className="relative z-10 flex flex-col items-center gap-6 text-center">
-        <span className="rounded-full border border-border px-3 py-1 text-xs tracking-widest text-muted-foreground uppercase">
+        <span className="rounded-full border border-border bg-background/40 px-3 py-1 text-xs tracking-widest text-muted-foreground uppercase backdrop-blur-sm">
           AI-Powered Product Studio
         </span>
 

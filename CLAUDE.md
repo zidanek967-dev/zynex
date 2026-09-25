@@ -63,7 +63,8 @@ Shadows: soft ambient shadow + colored glow shadow variant using `--accent` at l
 - Body: **Inter** (clean sans, body/UI text)
 
 **Motion language:**
-- 3D interactive hero: morphing AI core / particle field reacting to cursor (R3F)
+- Interactive hero: WebGL particle-network field reacting to cursor
+  (components/canvas — raw WebGL, not R3F; see note below)
 - Scroll-driven reveals (Motion `useScroll`/`whileInView`)
 - Magnetic buttons, text scramble/split-text headings on hero + section titles
 - Animated gradient accents on borders/CTAs, page transitions between routes
@@ -104,7 +105,7 @@ app/
   robots.ts
 components/
   ui/                         # shadcn components
-  three/                      # R3F scenes (hero core, particle field)
+  canvas/                     # raw WebGL/canvas visuals (hero particle-network)
   motion/                     # reusable animation primitives (magnetic button, split-text, reveal)
   sections/                   # page sections (Hero, Process, CaseStudies, Stats, FAQ, etc.)
   admin/
@@ -175,3 +176,15 @@ with 3 placeholder case studies + 3 sample blog posts.
   later.
 - Cal.com link, real case studies/testimonials/contact email, final logo/brand assets:
   placeholders for now, user will supply after the build.
+
+## Notes / deviations
+
+- Hero background is a raw WebGL particle-network effect (user-supplied
+  "Particle Drift — Originkit" component, `components/canvas/particle-drift.tsx`)
+  rather than the R3F icosahedron/particle-sphere originally built for stage (c).
+  `@react-three/fiber` / `@react-three/drei` stay installed per the stack
+  requirement above for any future 3D scene, just unused by the hero today.
+- Home page has a Pinterest pin embed section (user-requested,
+  `components/sections/pinterest-embed.tsx`) between Testimonials and FAQ
+  preview. It's a cross-origin iframe — its own white card chrome isn't
+  themeable from our side.

@@ -58,8 +58,20 @@ export function ServicesOverview() {
         </p>
       </Reveal>
 
-      <Reveal delay={0.1} className="mt-12 flex justify-center">
-        <MagneticDock items={dockItems} iconSize={60} maxScale={1.4} showLabels />
+      {/* 7 icons at a usable (44px+) touch size don't fit a narrow viewport —
+          scrolls horizontally there instead of forcing the row (and the whole
+          section) wider than the screen; centers normally once there's room. */}
+      <Reveal
+        delay={0.1}
+        className="-mx-6 mt-12 overflow-x-auto px-6 sm:mx-0 sm:flex sm:justify-center sm:overflow-visible sm:px-0"
+      >
+        <MagneticDock
+          items={dockItems}
+          iconSize={56}
+          maxScale={1.4}
+          showLabels
+          className="w-max"
+        />
       </Reveal>
 
       <Reveal delay={0.15} className="mt-16 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">

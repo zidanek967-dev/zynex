@@ -14,7 +14,11 @@ export default function Home() {
     <>
       <Hero />
       <TechMarquee />
-      <div className="flex flex-col gap-24 py-24 sm:gap-32 sm:py-32">
+      {/* space-y, not flex-col — flex items default to min-width:auto, which let
+          non-wrapping content (the services dock) force this wider than the
+          viewport on mobile. Block layout with margin-based spacing doesn't
+          have that failure mode. */}
+      <div className="space-y-24 py-24 sm:space-y-32 sm:py-32">
         <ServicesOverview />
         <Process />
         <CaseStudiesPreview />
