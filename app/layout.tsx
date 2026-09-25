@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { Footer } from "@/components/layout/footer";
+import { Nav } from "@/components/layout/nav";
+import { PageTransition } from "@/components/motion/page-transition";
+import { SmoothScrollProvider } from "@/components/motion/smooth-scroll-provider";
+
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
@@ -54,7 +59,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} dark h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <div className="grain-overlay pointer-events-none fixed inset-0 z-50" aria-hidden="true" />
+        <SmoothScrollProvider>
+          <Nav />
+          <PageTransition>{children}</PageTransition>
+          <Footer />
+        </SmoothScrollProvider>
+      </body>
     </html>
   );
 }
