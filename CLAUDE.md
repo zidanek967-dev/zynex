@@ -179,8 +179,11 @@ with 3 placeholder case studies + 3 sample blog posts.
 
 ## Notes / deviations
 
-- Hero background is a raw WebGL particle-network effect (user-supplied
-  "Particle Drift — Originkit" component, `components/canvas/particle-drift.tsx`)
-  rather than the R3F icosahedron/particle-sphere originally built for stage (c).
-  `@react-three/fiber` / `@react-three/drei` stay installed per the stack
+- Hero background is a raw WebGL accretion-disc effect (user-supplied
+  "Accretion Disc — Originkit" component, `components/canvas/accretion-disc.tsx`;
+  superseded an earlier "Particle Drift" version and, before that, an R3F
+  icosahedron/particle-sphere from stage (c) — all raw-WebGL/R3F hero
+  experiments live under `components/canvas/`, only the current one is wired
+  into `Hero`). `@react-three/fiber` / `@react-three/drei` stay installed per
+  the stack
   requirement above for any future 3D scene, just unused by the hero today.
