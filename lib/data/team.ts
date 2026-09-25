@@ -3,32 +3,17 @@ export type TeamMember = {
   role: string;
   bio: string;
   accent: string;
+  /** Path under /public. Falls back to an initials avatar when omitted. */
+  photo?: string;
 };
 
-// TODO(placeholder): swap for the real team.
+// Solo-founder-led for now — update this as ZYNEX hires.
 export const TEAM: TeamMember[] = [
   {
-    name: "TODO(placeholder name)",
+    name: "Mohammed Zidane",
     role: "Founder / CEO",
-    bio: "Sets the direction and stays close to every client engagement.",
+    bio: "Runs every part of ZYNEX today — strategy, design, engineering, and AI — and stays hands-on with every client engagement.",
     accent: "#3D6BFF",
-  },
-  {
-    name: "TODO(placeholder name)",
-    role: "Design Lead",
-    bio: "Shapes the visual systems AI drafts are refined into.",
-    accent: "#C6FF3E",
-  },
-  {
-    name: "TODO(placeholder name)",
-    role: "Engineering Lead",
-    bio: "Reviews and hardens every AI-generated build before it ships.",
-    accent: "#3EFFB0",
-  },
-  {
-    name: "TODO(placeholder name)",
-    role: "AI & Automation Lead",
-    bio: "Builds the agents and workflows behind our own process, too.",
-    accent: "#3D6BFF",
+    photo: "/images/team-mohammed-zidane.jpg",
   },
 ];

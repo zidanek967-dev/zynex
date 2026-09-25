@@ -35,40 +35,40 @@ interface OrbitCardStackProps {
 // TODO(placeholder): swap for real client testimonials.
 const defaultItems: OrbitStackItem[] = [
   {
-    name: "TODO(placeholder name)",
-    role: "Founder, TODO(placeholder company)",
+    name: "TODO: Name",
+    role: "Founder, TODO: Company",
     description:
       "TODO(placeholder testimonial): what this client said about working with ZYNEX.",
     accent: "#3D6BFF",
     stat: "Fintech",
   },
   {
-    name: "TODO(placeholder name)",
-    role: "Head of Product, TODO(placeholder company)",
+    name: "TODO: Name",
+    role: "Head of Product, TODO: Company",
     description:
       "TODO(placeholder testimonial): what this client said about working with ZYNEX.",
     accent: "#C6FF3E",
     stat: "Retail",
   },
   {
-    name: "TODO(placeholder name)",
-    role: "COO, TODO(placeholder company)",
+    name: "TODO: Name",
+    role: "COO, TODO: Company",
     description:
       "TODO(placeholder testimonial): what this client said about working with ZYNEX.",
     accent: "#3EFFB0",
     stat: "SaaS",
   },
   {
-    name: "TODO(placeholder name)",
-    role: "Founder, TODO(placeholder company)",
+    name: "TODO: Name",
+    role: "Founder, TODO: Company",
     description:
       "TODO(placeholder testimonial): what this client said about working with ZYNEX.",
     accent: "#3D6BFF",
     stat: "Healthcare",
   },
   {
-    name: "TODO(placeholder name)",
-    role: "Marketing Lead, TODO(placeholder company)",
+    name: "TODO: Name",
+    role: "Marketing Lead, TODO: Company",
     description:
       "TODO(placeholder testimonial): what this client said about working with ZYNEX.",
     accent: "#C6FF3E",
@@ -115,7 +115,7 @@ function Portrait({ item }: { item: OrbitStackItem }) {
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_20%,var(--portrait-accent),transparent_45%),radial-gradient(circle_at_85%_78%,var(--portrait-accent),transparent_38%)] opacity-[0.18]" />
       <Quote
-        className="absolute left-5 top-5 size-8 opacity-40"
+        className="absolute left-1/2 top-1/2 size-24 -translate-x-1/2 -translate-y-1/2 opacity-[0.12]"
         style={{ color: "var(--portrait-accent)" }}
         aria-hidden
       />
@@ -252,7 +252,7 @@ export function OrbitCardStack({
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   {item.role}
                 </p>
-                <h3 className="mt-2 font-display text-[1.7rem] font-semibold leading-tight tracking-tight text-foreground">
+                <h3 className="mt-2 font-display text-[clamp(1.2rem,4.5vw,1.7rem)] font-semibold leading-tight tracking-tight text-foreground">
                   {item.name}
                 </h3>
                 <p className="mt-4 max-w-[17rem] text-[0.95rem] font-medium leading-[1.42] tracking-[-0.01em] text-muted-foreground">
