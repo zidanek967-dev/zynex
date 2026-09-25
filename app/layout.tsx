@@ -54,6 +54,21 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ZYNEX",
+  url: siteUrl,
+  logo: `${siteUrl}/favicon.svg`,
+  description:
+    "AI-powered product studio building websites, apps, dashboards and AI agents.",
+  areaServed: "Worldwide",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "AE",
+  },
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -61,6 +76,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <div className="grain-overlay pointer-events-none fixed inset-0 z-50" aria-hidden="true" />
         <PageBackground />
         <SmoothScrollProvider>

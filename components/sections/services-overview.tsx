@@ -1,38 +1,20 @@
 "use client";
 
-import {
-  AppWindow,
-  Bot,
-  Globe,
-  LayoutDashboard,
-  PanelsTopLeft,
-  Smartphone,
-  Workflow,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
 
 import { Reveal } from "@/components/motion/reveal";
 import { SplitText } from "@/components/motion/split-text";
 import { MagneticDock } from "@/components/ui/magnetic-dock";
+import { SERVICE_ICONS } from "@/lib/data/service-icons";
 import { SERVICES } from "@/lib/data/services";
-
-const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  websites: Globe,
-  "web-portals": PanelsTopLeft,
-  "web-apps": AppWindow,
-  "mobile-apps": Smartphone,
-  dashboards: LayoutDashboard,
-  "ai-agents": Bot,
-  automation: Workflow,
-};
 
 export function ServicesOverview() {
   const router = useRouter();
 
   const dockItems = SERVICES.map((service) => {
-    const Icon = ICONS[service.id];
+    const Icon = SERVICE_ICONS[service.id];
     return {
       id: service.id,
       label: service.label,
