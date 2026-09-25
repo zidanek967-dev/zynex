@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { ParticleDriftBackground } from "@/components/canvas/particle-drift-background";
@@ -9,6 +10,20 @@ import { ScrollCue } from "@/components/sections/scroll-cue";
 export function Hero() {
   return (
     <section className="relative flex min-h-[92vh] flex-col items-center justify-center overflow-hidden px-6 pt-24 pb-16">
+      {/* Background image — cropped to fill the hero at any viewport ratio.
+          Scoped to this section only (overflow-hidden + absolute inset-0). */}
+      <div className="absolute inset-0 -z-20" aria-hidden="true">
+        <Image
+          src="/images/hero-galaxy.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-70"
+        />
+        <div className="absolute inset-0 bg-background/55" />
+      </div>
+
       <ParticleDriftBackground />
 
       <div
