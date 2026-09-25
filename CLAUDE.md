@@ -184,7 +184,3 @@ with 3 placeholder case studies + 3 sample blog posts.
   rather than the R3F icosahedron/particle-sphere originally built for stage (c).
   `@react-three/fiber` / `@react-three/drei` stay installed per the stack
   requirement above for any future 3D scene, just unused by the hero today.
-- Home page has a Pinterest pin embed section (user-requested,
-  `components/sections/pinterest-embed.tsx`) between Testimonials and FAQ
-  preview. It's a cross-origin iframe — its own white card chrome isn't
-  themeable from our side.
