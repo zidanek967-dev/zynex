@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Footer } from "@/components/layout/footer";
 import { Nav } from "@/components/layout/nav";
+import { PageBackground } from "@/components/layout/page-background";
 import { PageTransition } from "@/components/motion/page-transition";
 import { SmoothScrollProvider } from "@/components/motion/smooth-scroll-provider";
 
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <div className="grain-overlay pointer-events-none fixed inset-0 z-50" aria-hidden="true" />
+        <PageBackground />
         <SmoothScrollProvider>
           <Nav />
           <PageTransition>{children}</PageTransition>
