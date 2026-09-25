@@ -18,7 +18,13 @@ function Avatar({ member, size = "size-16" }: { member: TeamMember; size?: strin
   if (member.photo) {
     return (
       <span className={`relative block ${size} shrink-0 overflow-hidden rounded-full border border-border`}>
-        <Image src={member.photo} alt={member.name} fill sizes="128px" className="object-cover" />
+        <Image
+          src={member.photo}
+          alt={member.name}
+          fill
+          sizes="128px"
+          className="object-cover object-[center_20%]"
+        />
       </span>
     );
   }
