@@ -2,6 +2,7 @@ import { CaseStudiesPreview } from "@/components/sections/case-studies-preview";
 import { Cta } from "@/components/sections/cta";
 import { FaqPreview } from "@/components/sections/faq-preview";
 import { Hero } from "@/components/sections/hero";
+import { PinterestEmbed } from "@/components/sections/pinterest-embed";
 import { Process } from "@/components/sections/process";
 import { ServicesOverview } from "@/components/sections/services-overview";
 import { Stats } from "@/components/sections/stats";
@@ -19,6 +20,7 @@ export default function Home() {
         <CaseStudiesPreview />
         <Stats />
         <Testimonials />
+        <PinterestEmbed />
         <FaqPreview />
         <Cta />
       </div>
