@@ -214,3 +214,29 @@ with 3 placeholder case studies + 3 sample blog posts.
   Conversation logging to `chat_sessions`/`chat_messages` uses the service-role
   client and is best-effort (wrapped in try/catch) so a logging hiccup never
   breaks the chat reply.
+- Stage (g) — admin dashboard (`app/admin/`): follows the `(protected)` route
+  group from the target folder structure above — `app/admin/layout.tsx` is a
+  bare noindex shell, `app/admin/login/page.tsx` is a standalone magic-link
+  form (no dashboard chrome), and everything under `app/admin/(protected)/`
+  gets the real nav + sign-out via its own nested layout. `proxy.ts` (written
+  in stage (a)) already gated `/admin/*` on `user.email === ADMIN_EMAIL`, and
+  `components/layout/marketing-chrome.tsx` hides the marketing nav/footer/
+  WhatsApp button/chatbot on `/admin/*` (same pathname-prefix pattern as
+  `page-background.tsx`). CRUD (leads status/notes, case studies, blog posts)
+  uses plain HTML forms + Server Actions against the cookie-based Supabase
+  client — no service-role client needed, since `is_admin()` RLS policies
+  already grant the admin full read/write on every table once signed in.
+  Image fields (`cover_image_url`, `gallery_image_urls`, `og_image_url`) are
+  plain URL text inputs for now, not a Storage upload UI — a reasonable v1
+  scope cut; wire up Supabase Storage + an upload widget later if needed.
+  Verified: proxy correctly redirects an unauthenticated visitor to
+  `/admin/login`; a real magic-link email round-tripped through Supabase Auth
+  successfully; RLS was exercised directly in SQL (`set local role
+  authenticated; set local request.jwt.claims ...`) confirming
+  `zidane.k967@gmail.com` passes `is_admin()` and can read/write every admin
+  table while an arbitrary other email cannot. Could not click through the
+  actual magic-link into the authenticated dashboard screens in this
+  session — the browser tool declined to navigate to the `supabase.co` auth
+  domain — so the admin page UIs themselves are compile-verified
+  (`tsc`/`eslint`/`next build` clean) but not yet visually confirmed in a
+  live authenticated session; worth a manual click-through.

@@ -2,11 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import { ChatWidget } from "@/components/chat/chat-widget";
-import { Footer } from "@/components/layout/footer";
-import { Nav } from "@/components/layout/nav";
+import { MarketingChrome } from "@/components/layout/marketing-chrome";
 import { PageBackground } from "@/components/layout/page-background";
-import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { PageTransition } from "@/components/motion/page-transition";
 import { SmoothScrollProvider } from "@/components/motion/smooth-scroll-provider";
 
@@ -85,12 +82,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div className="grain-overlay pointer-events-none fixed inset-0 z-50" aria-hidden="true" />
         <PageBackground />
         <SmoothScrollProvider>
-          <Nav />
-          <PageTransition>{children}</PageTransition>
-          <Footer />
+          <MarketingChrome>
+            <PageTransition>{children}</PageTransition>
+          </MarketingChrome>
         </SmoothScrollProvider>
-        <WhatsAppButton />
-        <ChatWidget />
       </body>
     </html>
   );
