@@ -200,3 +200,17 @@ with 3 placeholder case studies + 3 sample blog posts.
   compensate. Booking uses a plain `<iframe src="{CAL_LINK}?embed=true&theme=dark">`
   (`components/sections/booking.tsx`) instead of `@calcom/embed-react` — no new
   dependency, same result for a single embedded event type.
+- Stage (f) — chatbot (`app/api/chat/route.ts`, `lib/ai/`,
+  `components/chat/chat-widget.tsx`): built against AI SDK v7 / `@ai-sdk/react`
+  v4's UI-message-stream protocol (`useChat` + `DefaultChatTransport` +
+  `streamText(...).toUIMessageStreamResponse()`), noticeably different API
+  from older AI SDK docs (`convertToModelMessages` is now async, for one). The
+  route checks `isAiConfigured()` first and returns a 503 with a friendly
+  message when `AI_PROVIDER`/`AI_MODEL`/`AI_API_KEY` aren't set (they aren't
+  yet — deferred per the user) instead of throwing; the widget surfaces that
+  message in the chat pane rather than erroring out. Rate limiting is a
+  best-effort in-memory per-IP counter (`lib/ai/rate-limit.ts`) — fine for a
+  single instance, swap for a durable store if this ever runs multi-instance.
+  Conversation logging to `chat_sessions`/`chat_messages` uses the service-role
+  client and is best-effort (wrapped in try/catch) so a logging hiccup never
+  breaks the chat reply.

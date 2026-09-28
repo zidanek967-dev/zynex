@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { ChatWidget } from "@/components/chat/chat-widget";
 import { Footer } from "@/components/layout/footer";
 import { Nav } from "@/components/layout/nav";
 import { PageBackground } from "@/components/layout/page-background";
@@ -89,6 +90,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Footer />
         </SmoothScrollProvider>
         <WhatsAppButton />
+        <ChatWidget />
       </body>
     </html>
   );
