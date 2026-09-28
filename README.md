@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ZYNEX
 
-## Getting Started
+ZYNEX is an AI-powered product studio's marketing site + admin dashboard. Built with
+Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui (`base-nova` / Base UI), Motion,
+raw WebGL for the hero and ambient background, Supabase (Postgres + Auth), and the
+Vercel AI SDK for the chatbot.
 
-First, run the development server:
+## Stack
+
+- **Framework**: Next.js 16 (App Router, Turbopack)
+- **UI**: Tailwind CSS v4, shadcn/ui (`base-nova` preset, built on Base UI), Motion
+- **3D / canvas**: raw WebGL (accretion-disc hero, dot-matrix ambient background) —
+  see `components/canvas/`
+- **Forms**: React Hook Form + Zod
+- **Data**: Supabase (Postgres, Auth, RLS)
+- **AI**: Vercel AI SDK (`ai`, `@ai-sdk/react`), provider-agnostic (OpenAI or Anthropic)
+- **Deploy target**: Vercel
+
+## Setup
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Environment variables
+
+Copy `.env.example` to `.env.local` and fill in the values:
+
+```bash
+cp .env.example .env.local
+```
+
+| Var | Where to get it |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase Dashboard → Settings → API (publishable/anon key is safe client-side) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase Dashboard → Settings → API — **server-only secret**, never exposed to the client. Used for chatbot conversation logging (`chat_sessions`/`chat_messages`) |
+| `ADMIN_EMAIL` | The one email allowed to sign in to `/admin`. Must also exist as a row in the `admin_users` table (RLS's source of truth) — insert it via the Supabase SQL editor: `insert into public.admin_users (email) values ('you@example.com');` |
+| `AI_PROVIDER`, `AI_MODEL`, `AI_API_KEY` | Optional — leave blank and the chatbot widget shows a graceful "not configured" message. Set `AI_PROVIDER` to `openai` or `anthropic`, `AI_MODEL` to that provider's model id, `AI_API_KEY` to the provider's key |
+| `CAL_LINK` | Your Cal.com event link, e.g. `https://cal.com/your-team/intro-call` |
+| `WHATSAPP_NUMBER` | International format, no `+`, no leading `0` (wa.me format) |
+| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` locally; your production domain when deployed |
+
+### 3. Supabase
+
+The project already has migrations under `supabase/migrations/` (leads, case studies,
+blog posts, chat sessions/messages, `admin_users` allowlist + `is_admin()` RLS helper) and
+a `supabase/seed.sql` with placeholder case studies and blog posts. If you're connecting
+a fresh Supabase project, apply the migrations (via the Supabase CLI, the dashboard's SQL
+editor, or the Supabase MCP server) and seed the `admin_users` table with your
+`ADMIN_EMAIL`.
+
+Auth: `/admin` uses Supabase's passwordless email magic-link sign-in. In Supabase
+Dashboard → Authentication → URL Configuration, make sure your site URL and
+`{site}/auth/callback` are in the allowed redirect list (both local and production).
+
+### 4. Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Admin dashboard
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Visit `/admin` — you'll be redirected to `/admin/login` if not signed in as
+`ADMIN_EMAIL`. Sign in with a magic link; it's sent to your inbox and completes the
+session via `/auth/callback`. From there: leads (status + notes), portfolio (case study
+CRUD), blog (post CRUD, Markdown content), and a read-only chat log viewer.
 
-## Learn More
+## Chatbot
 
-To learn more about Next.js, take a look at the following resources:
+The chatbot widget (bottom-left, every marketing page) is provider-agnostic — swap
+providers by changing `AI_PROVIDER`/`AI_MODEL`/`AI_API_KEY` only, no code changes (see
+`lib/ai/provider.ts`). It streams via `/api/chat`, rate-limits per IP (in-memory,
+single-instance — swap for a durable store if you scale to multiple instances), and logs
+conversations to `chat_sessions`/`chat_messages` for the admin chat-log viewer.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy (Vercel)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Push this repo to GitHub/GitLab/Bitbucket and import it in Vercel, or run
+   `vercel` from the project root.
+2. Add all the env vars from `.env.example` in the Vercel project's Environment
+   Variables settings (production + preview).
+3. Set `NEXT_PUBLIC_SITE_URL` to your production domain.
+4. In Supabase Dashboard → Authentication → URL Configuration, add your production
+   domain (and `{domain}/auth/callback`) to the allowed redirect URLs.
+5. Deploy. `next build` runs migrations-agnostically — Supabase schema changes are
+   applied separately (CLI/dashboard/MCP), not as part of the Next.js build.
 
-## Deploy on Vercel
+## Project docs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `CLAUDE.md` — brand tokens, folder structure, build workflow, and a running log of
+  deviations/decisions made during the build.
+- `AGENTS.md` — Next.js version-specific API notes (regenerated by `next dev`).
