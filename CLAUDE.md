@@ -240,3 +240,18 @@ with 3 placeholder case studies + 3 sample blog posts.
   domain — so the admin page UIs themselves are compile-verified
   (`tsc`/`eslint`/`next build` clean) but not yet visually confirmed in a
   live authenticated session; worth a manual click-through.
+- Stage (h) — SEO + perf pass: `app/sitemap.ts` and `app/robots.ts` use the
+  Next.js file-convention (not static XML/txt files), pulling live case-study
+  and blog slugs from Supabase; `/admin` and `/api` are disallowed.
+  `app/opengraph-image.tsx` generates a branded default OG/Twitter card via
+  `next/og`'s `ImageResponse` (no real brand asset existed yet) — the root
+  layout's `openGraph.images`/`twitter.images` point at it, and since every
+  marketing page's own `metadata` export only sets `title`/`description`
+  (never its own `openGraph` object), Next's shallow per-key metadata merge
+  means they all inherit that image automatically; `blog/[slug]` and
+  `portfolio/[slug]` already override `openGraph.images` with the real
+  content's `cover_image_url` when set, so this doesn't clobber those. Added
+  a `viewport` export (`themeColor`, `colorScheme: "dark"`) for mobile browser
+  chrome tinting. 3D lazy-loading / `prefers-reduced-motion` handling and
+  `next/image`/`next/font` usage were already in place from earlier stages —
+  this pass didn't need to touch them.

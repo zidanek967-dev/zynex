@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -41,16 +41,23 @@ export const metadata: Metadata = {
     title: "ZYNEX — AI-Built Websites, Apps & Agents",
     description:
       "AI-powered product studio delivering websites, apps, dashboards and AI agents in days, not months.",
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
     title: "ZYNEX — AI-Built Websites, Apps & Agents",
     description:
       "AI-powered product studio delivering websites, apps, dashboards and AI agents in days, not months.",
+    images: ["/opengraph-image"],
   },
   icons: {
     icon: "/favicon.svg",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#07080B",
+  colorScheme: "dark",
 };
 
 const organizationJsonLd = {
