@@ -187,3 +187,16 @@ with 3 placeholder case studies + 3 sample blog posts.
   into `Hero`). `@react-three/fiber` / `@react-three/drei` stay installed per
   the stack
   requirement above for any future 3D scene, just unused by the hero today.
+- Stage (e) — Contact page (`app/contact/`): quote builder is hand-rolled with
+  `react-hook-form` + `zod` rather than shadcn's `form.tsx` — the shadcn CLI
+  silently no-ops on `add form` for the `base-nova` (Base UI) style/registry
+  combo in this project, so `FormField`/`FormItem` wrappers were never
+  available; not worth chasing since the direct `Controller`/`register` API
+  is one layer thinner anyway. Also note: Base UI's `Checkbox`/`RadioGroup`
+  items render as `<span role="radio|checkbox">`, not a native labelable
+  input, so wrapping them in a plain `<label>` does NOT forward click-to-toggle
+  the way it would for a real `<input>` — every checkbox/radio option card in
+  `quote-builder.tsx` has an explicit `onClick`/`toggle` on the `<label>` to
+  compensate. Booking uses a plain `<iframe src="{CAL_LINK}?embed=true&theme=dark">`
+  (`components/sections/booking.tsx`) instead of `@calcom/embed-react` — no new
+  dependency, same result for a single embedded event type.

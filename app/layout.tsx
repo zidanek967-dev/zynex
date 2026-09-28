@@ -5,6 +5,7 @@ import "./globals.css";
 import { Footer } from "@/components/layout/footer";
 import { Nav } from "@/components/layout/nav";
 import { PageBackground } from "@/components/layout/page-background";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { PageTransition } from "@/components/motion/page-transition";
 import { SmoothScrollProvider } from "@/components/motion/smooth-scroll-provider";
 
@@ -87,6 +88,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <PageTransition>{children}</PageTransition>
           <Footer />
         </SmoothScrollProvider>
+        <WhatsAppButton />
       </body>
     </html>
   );
