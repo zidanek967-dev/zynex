@@ -5,6 +5,7 @@ import { Booking } from "@/components/sections/booking";
 import { QuoteBuilder } from "@/components/sections/quote-builder";
 import { Reveal } from "@/components/motion/reveal";
 import { SplitText } from "@/components/motion/split-text";
+import { Eyebrow } from "@/components/fx/eyebrow";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -20,13 +21,11 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col gap-20 py-24 sm:py-32">
       <Reveal className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center">
-        <span className="text-xs font-semibold tracking-widest text-brand uppercase">
-          Get in touch
-        </span>
+        <Eyebrow live>Get in touch</Eyebrow>
         <SplitText
           as="h1"
-          text="Tell us what you're building"
-          className="max-w-3xl font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl"
+          text="Tell us what you're *building*"
+          className="max-w-3xl h-xl text-balance"
         />
         <p className="max-w-xl text-muted-foreground">
           Answer a few quick questions and we&apos;ll come back with a scope and timeline —
@@ -38,7 +37,7 @@ export default function ContactPage() {
         <QuoteBuilder />
 
         <div className="flex flex-col gap-4">
-          <Reveal delay={0.1} className="glass glow-border rounded-3xl border border-border p-6">
+          <Reveal delay={0.1} className="glass glow-border fx-card rounded-3xl border border-border p-6">
             <h2 className="font-display text-sm font-semibold text-foreground">
               Prefer to talk directly?
             </h2>
@@ -64,7 +63,7 @@ export default function ContactPage() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.2} className="glass glow-border rounded-3xl border border-border p-6">
+          <Reveal delay={0.2} className="glass glow-border fx-card rounded-3xl border border-border p-6">
             <h2 className="font-display text-sm font-semibold text-foreground">
               What happens next
             </h2>

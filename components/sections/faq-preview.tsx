@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { FAQS } from "@/lib/data/faqs";
+import { Eyebrow } from "@/components/fx/eyebrow";
 
 export function FaqPreview() {
   const preview = FAQS.slice(0, 4);
@@ -17,11 +18,11 @@ export function FaqPreview() {
   return (
     <section className="mx-auto max-w-3xl px-6">
       <Reveal className="flex flex-col items-center gap-3 text-center">
-        <span className="text-xs font-semibold tracking-widest text-brand uppercase">FAQ</span>
+        <Eyebrow>FAQ</Eyebrow>
         <SplitText
           as="h2"
-          text="Questions, answered"
-          className="font-display text-3xl font-semibold tracking-tight sm:text-4xl"
+          text="Questions, *answered*"
+          className="h-lg"
         />
       </Reveal>
 

@@ -14,9 +14,9 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          backgroundColor: "#07080B",
+          backgroundColor: "#05060A",
           backgroundImage:
-            "radial-gradient(circle at 15% 20%, rgba(61,107,255,0.35), transparent 45%), radial-gradient(circle at 85% 85%, rgba(198,255,62,0.18), transparent 40%)",
+            "radial-gradient(circle at 15% 20%, rgba(94,242,255,0.28), transparent 45%), radial-gradient(circle at 85% 85%, rgba(167,139,250,0.26), transparent 40%)",
         }}
       >
         <div
@@ -34,15 +34,15 @@ export default function OpengraphImage() {
               width: 56,
               height: 56,
               borderRadius: 14,
-              background: "linear-gradient(135deg, #3D6BFF, #C6FF3E)",
-              color: "#07080B",
+              background: "linear-gradient(135deg, #5EF2FF, #A78BFA)",
+              color: "#05060A",
               fontSize: 32,
               fontWeight: 700,
             }}
           >
             Z
           </div>
-          <span style={{ fontSize: 32, fontWeight: 700, color: "#F4F6FA", letterSpacing: -0.5 }}>
+          <span style={{ fontSize: 32, fontWeight: 700, color: "#E8ECF5", letterSpacing: -0.5 }}>
             ZYNEX
           </span>
         </div>
@@ -55,10 +55,10 @@ export default function OpengraphImage() {
             maxWidth: 920,
           }}
         >
-          <span style={{ fontSize: 66, fontWeight: 700, color: "#F4F6FA", lineHeight: 1.08 }}>
+          <span style={{ fontSize: 66, fontWeight: 700, color: "#E8ECF5", lineHeight: 1.08 }}>
             AI-built software.
           </span>
-          <span style={{ fontSize: 66, fontWeight: 700, color: "#F4F6FA", lineHeight: 1.08 }}>
+          <span style={{ fontSize: 66, fontWeight: 700, color: "#E8ECF5", lineHeight: 1.08 }}>
             Shipped in days.
           </span>
         </div>

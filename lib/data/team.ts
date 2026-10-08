@@ -13,7 +13,7 @@ export const TEAM: TeamMember[] = [
     name: "Mohammed Zidane",
     role: "Founder / CEO",
     bio: "Runs every part of ZYNEX today — strategy, design, engineering, and AI — and stays hands-on with every client engagement.",
-    accent: "#3D6BFF",
+    accent: "#5EF2FF",
     photo: "/images/team-mohammed-zidane.jpg",
   },
 ];

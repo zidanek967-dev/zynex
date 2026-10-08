@@ -5,6 +5,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { SplitText } from "@/components/motion/split-text";
 import { Button } from "@/components/ui/button";
 import { getCaseStudies } from "@/lib/supabase/queries";
+import { Eyebrow } from "@/components/fx/eyebrow";
 
 export async function CaseStudiesPreview() {
   const caseStudies = (await getCaseStudies()).slice(0, 3);
@@ -14,13 +15,11 @@ export async function CaseStudiesPreview() {
   return (
     <section id="work" className="mx-auto max-w-6xl px-6">
       <Reveal className="flex flex-col items-center gap-3 text-center">
-        <span className="text-xs font-semibold tracking-widest text-brand uppercase">
-          Featured work
-        </span>
+        <Eyebrow>Featured work</Eyebrow>
         <SplitText
           as="h2"
-          text="Recent builds"
-          className="font-display text-3xl font-semibold tracking-tight sm:text-4xl"
+          text="Recent *builds*"
+          className="h-lg"
         />
       </Reveal>
 

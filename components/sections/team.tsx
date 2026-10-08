@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Reveal } from "@/components/motion/reveal";
 import { SplitText } from "@/components/motion/split-text";
 import { TEAM, type TeamMember } from "@/lib/data/team";
+import { Eyebrow } from "@/components/fx/eyebrow";
 
 function initials(name: string) {
   if (name.startsWith("TODO")) return "ZX";
@@ -44,17 +45,17 @@ export function Team() {
   return (
     <section className="mx-auto max-w-6xl px-6">
       <Reveal className="flex flex-col items-center gap-3 text-center">
-        <span className="text-xs font-semibold tracking-widest text-brand uppercase">Team</span>
+        <Eyebrow>Team</Eyebrow>
         <SplitText
           as="h2"
-          text="The people behind the process"
-          className="font-display text-3xl font-semibold tracking-tight sm:text-4xl"
+          text="The people behind the *process*"
+          className="h-lg"
         />
       </Reveal>
 
       {soloFounder ? (
         <Reveal delay={0.1} className="mt-12 flex justify-center">
-          <div className="glass glow-border flex w-full max-w-xl flex-col items-center gap-4 rounded-3xl border border-border p-8 text-center sm:flex-row sm:text-left">
+          <div className="glass glow-border fx-card flex w-full max-w-xl flex-col items-center gap-4 rounded-3xl border border-border p-8 text-center sm:flex-row sm:text-left">
             <Avatar member={TEAM[0]} size="size-24" />
             <div>
               <h3 className="font-display text-xl font-semibold text-foreground">
@@ -69,7 +70,7 @@ export function Team() {
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {TEAM.map((member, i) => (
             <Reveal key={member.name + member.role} delay={i * 0.08}>
-              <div className="glass glow-border flex h-full flex-col items-center gap-3 rounded-3xl border border-border p-6 text-center">
+              <div className="glass glow-border fx-card flex h-full flex-col items-center gap-3 rounded-3xl border border-border p-6 text-center">
                 <Avatar member={member} />
                 <div>
                   <h3 className="font-display text-base font-semibold text-foreground">

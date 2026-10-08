@@ -55,6 +55,10 @@ Auth: `/admin` uses Supabase's passwordless email magic-link sign-in. In Supabas
 Dashboard → Authentication → URL Configuration, make sure your site URL and
 `{site}/auth/callback` are in the allowed redirect list (both local and production).
 
+> **Free-tier note:** Supabase pauses free projects after ~7 days of inactivity. A paused
+> project makes every data-backed page render empty and slows each request (the proxy calls
+> Supabase Auth). Restore it from the Supabase dashboard (or upgrade to Pro for production).
+
 ### 4. Run locally
 
 ```bash

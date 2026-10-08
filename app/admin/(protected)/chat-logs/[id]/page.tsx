@@ -46,7 +46,7 @@ export default async function ChatLogDetailPage({
               className={cn(
                 "max-w-[85%] rounded-2xl px-4 py-2.5 text-sm",
                 message.role === "user"
-                  ? "self-end bg-brand text-white"
+                  ? "self-end bg-gradient-brand text-primary-foreground"
                   : "self-start bg-surface text-foreground/90",
               )}
             >

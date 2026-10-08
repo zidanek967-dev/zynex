@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       <SplitText
         as="h1"
         text={post.title}
-        className="mt-4 font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl"
+        className="mt-4 h-xl text-balance"
       />
 
       {post.cover_image_url && (

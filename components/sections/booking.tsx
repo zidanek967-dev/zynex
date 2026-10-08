@@ -4,7 +4,7 @@ export function Booking({ calLink }: { calLink: string }) {
   const src = `${calLink}?embed=true&theme=dark`;
 
   return (
-    <Reveal className="glass glow-border overflow-hidden rounded-3xl border border-border">
+    <Reveal className="glass glow-border fx-card overflow-hidden rounded-3xl border border-border">
       <iframe
         src={src}
         title="Book a call with ZYNEX"

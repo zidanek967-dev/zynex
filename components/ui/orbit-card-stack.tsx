@@ -39,7 +39,7 @@ const defaultItems: OrbitStackItem[] = [
     role: "Founder, TODO: Company",
     description:
       "TODO(placeholder testimonial): what this client said about working with ZYNEX.",
-    accent: "#3D6BFF",
+    accent: "#5EF2FF",
     stat: "Fintech",
   },
   {
@@ -47,7 +47,7 @@ const defaultItems: OrbitStackItem[] = [
     role: "Head of Product, TODO: Company",
     description:
       "TODO(placeholder testimonial): what this client said about working with ZYNEX.",
-    accent: "#C6FF3E",
+    accent: "#A78BFA",
     stat: "Retail",
   },
   {
@@ -55,7 +55,7 @@ const defaultItems: OrbitStackItem[] = [
     role: "COO, TODO: Company",
     description:
       "TODO(placeholder testimonial): what this client said about working with ZYNEX.",
-    accent: "#3EFFB0",
+    accent: "#F0ABFC",
     stat: "SaaS",
   },
   {
@@ -63,7 +63,7 @@ const defaultItems: OrbitStackItem[] = [
     role: "Founder, TODO: Company",
     description:
       "TODO(placeholder testimonial): what this client said about working with ZYNEX.",
-    accent: "#3D6BFF",
+    accent: "#5EF2FF",
     stat: "Healthcare",
   },
   {
@@ -71,7 +71,7 @@ const defaultItems: OrbitStackItem[] = [
     role: "Marketing Lead, TODO: Company",
     description:
       "TODO(placeholder testimonial): what this client said about working with ZYNEX.",
-    accent: "#C6FF3E",
+    accent: "#A78BFA",
     stat: "Hospitality",
   },
 ];
@@ -111,7 +111,7 @@ function Portrait({ item }: { item: OrbitStackItem }) {
   return (
     <div
       className={shared}
-      style={{ "--portrait-accent": item.accent ?? "#3D6BFF" } as CSSProperties}
+      style={{ "--portrait-accent": item.accent ?? "#5EF2FF" } as CSSProperties}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_20%,var(--portrait-accent),transparent_45%),radial-gradient(circle_at_85%_78%,var(--portrait-accent),transparent_38%)] opacity-[0.18]" />
       <Quote
@@ -121,7 +121,7 @@ function Portrait({ item }: { item: OrbitStackItem }) {
       />
       <span
         className="absolute bottom-4 right-4 grid size-11 place-items-center rounded-full text-xs font-semibold tracking-[0.1em] text-background"
-        style={{ backgroundColor: item.accent ?? "#3D6BFF" }}
+        style={{ backgroundColor: item.accent ?? "#5EF2FF" }}
       >
         {initials}
       </span>

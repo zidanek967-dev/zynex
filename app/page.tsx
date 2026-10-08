@@ -6,6 +6,7 @@ import { Process } from "@/components/sections/process";
 import { ServicesOverview } from "@/components/sections/services-overview";
 import { Stats } from "@/components/sections/stats";
 import { TechMarquee } from "@/components/sections/tech-marquee";
+import { WhyZynex } from "@/components/sections/why-zynex";
 import { Testimonials } from "@/components/sections/testimonials";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
           viewport on mobile. Block layout with margin-based spacing doesn't
           have that failure mode. */}
       <div className="space-y-24 py-24 sm:space-y-32 sm:py-32">
+        <WhyZynex />
         <ServicesOverview />
         <Process />
         <CaseStudiesPreview />

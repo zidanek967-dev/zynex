@@ -40,7 +40,7 @@ export function ServiceDetail({ service, index }: { service: Service; index: num
           </Link>
         </div>
 
-        <div className="glass glow-border rounded-3xl border border-border p-6 sm:p-8">
+        <div className="glass glow-border fx-card rounded-3xl border border-border p-6 sm:p-8">
           <span className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
             What&apos;s included
           </span>

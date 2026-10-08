@@ -59,7 +59,7 @@ export function ChatWidget() {
   return (
     <div className="fixed bottom-6 left-6 z-40 flex flex-col items-start gap-3">
       {open ? (
-        <div className="glass glow-border flex h-[28rem] w-[22rem] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-3xl border border-border">
+        <div className="glass glow-border fx-card flex h-[28rem] w-[22rem] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-3xl border border-border">
           <div className="flex items-center justify-between border-b border-border px-4 py-3">
             <span className="font-display text-sm font-semibold text-foreground">
               ZYNEX Assistant
@@ -92,7 +92,7 @@ export function ChatWidget() {
                     className={cn(
                       "max-w-[85%] rounded-2xl px-3.5 py-2 text-sm",
                       message.role === "user"
-                        ? "ml-auto bg-brand text-white"
+                        ? "ml-auto bg-gradient-brand text-primary-foreground"
                         : "bg-surface text-foreground/90",
                     )}
                   >
@@ -139,7 +139,7 @@ export function ChatWidget() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close chat" : "Open ZYNEX chat assistant"}
-        className="glow-border flex size-14 items-center justify-center rounded-full border border-border bg-brand text-white shadow-lg shadow-brand/20 transition-transform hover:scale-105 active:scale-95"
+        className="glow-border flex size-14 items-center justify-center rounded-full border border-border bg-gradient-brand text-primary-foreground shadow-lg shadow-brand/25 transition-transform hover:scale-105 active:scale-95"
       >
         {open ? <X className="size-6" /> : <MessageSquare className="size-6" />}
       </button>

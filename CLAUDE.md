@@ -35,36 +35,39 @@ Target clients: small businesses, startups, enterprises. English only.
 
 ## Brand & Design Tokens
 
-Dark, futuristic, premium — not a generic SaaS template. Glassmorphism panels, subtle
+Dark, futuristic, premium — not a generic SaaS template. Glassmorphism panels, engineering-grid backdrop, subtle
 film grain, glowing borders, animated gradients used sparingly (accents/CTAs, not full
 backgrounds).
 
-**Color tokens** (CSS variables + Tailwind theme, defined in `app/globals.css` /
-`tailwind.config.ts`; values below are the working proposal — flag if you want changes):
+**Color tokens** (CSS variables + Tailwind theme, defined in `app/globals.css`; this is the
+"ZYNEX AI theme" taken from the user's Fleet Bridge proposal artifact — it supersedes the
+original blue/lime proposal):
 
 | Token | Value | Use |
 |---|---|---|
-| `--background` | `#07080B` | base canvas, near-black with cool undertone |
-| `--surface` | `#0E1016` | panels/cards (glass over this) |
-| `--surface-glass` | `rgba(14,16,22,0.55)` + blur | glass panels |
-| `--foreground` | `#F4F6FA` | primary text |
-| `--muted` | `#8B93A7` | secondary text |
-| `--border` | `rgba(255,255,255,0.08)` | hairlines, glowing on hover |
-| `--accent` | `#3D6BFF` | electric blue/indigo — primary CTA, links, glow |
-| `--accent-2` | `#C6FF3E` | neon lime — secondary accent, sparingly (highlights, chips, chart accents) |
-| `--danger` | `#FF5C5C` | errors |
-| `--success` | `#3EFFB0` | success states |
+| `--background` | `#05060A` | base canvas, near-black |
+| `--surface` / `--surface-2` / `--surface-3` | `#0B0D14` / `#11141D` / `#181C28` | panels/cards (glass over these) |
+| `--foreground` | `#E8ECF5` | primary text |
+| `--muted-foreground` | `#8B93A7` | secondary text (`--dim` `#566079` for tertiary) |
+| `--border` / `--line-2` | `#1C2130` / `#2C3348` | hairlines / stronger hairlines |
+| `--brand` (= `--primary`) | `#5EF2FF` | electric cyan — primary CTA, links, glow; dark text (`--primary-foreground` `#031418`) on top |
+| `--brand-2` | `#A78BFA` | violet — secondary accent |
+| `--brand-3` | `#F0ABFC` | pink — gradient end / tertiary |
+| `--gradient-brand` | `linear-gradient(95deg,#5EF2FF,#A78BFA 60%,#F0ABFC)` | CTAs, accent words (`.text-gradient`, `.bg-gradient-brand`) |
+| `--destructive` / `--success` | `#FF6B7A` / `#6EE7B7` | errors / success |
 
 Radii: `--radius-sm: 8px`, `--radius-md: 14px`, `--radius-lg: 24px`.
-Shadows: soft ambient shadow + colored glow shadow variant using `--accent` at low opacity.
+Shadows: soft ambient shadow + colored glow shadow variant using `--brand` at low opacity.
 
 **Typography** (Google Fonts):
-- Display: **Space Grotesk** (headings, sharp/geometric)
-- Body: **Inter** (clean sans, body/UI text)
+- Display: **Unbounded** (headings — wide, so use the fluid `.h-xl`/`.h-lg`/`.h-md` classes, not fixed `text-4xl`)
+- Body: **Geist**; mono labels/buttons/eyebrows: **Geist Mono**
 
 **Motion language:**
-- Interactive hero: WebGL particle-network field reacting to cursor
-  (components/canvas — raw WebGL, not R3F; see note below)
+- Hero: raw-WebGL accretion disc (components/canvas) over a site-wide cosmic nebula
+  background; letter-cascade headline, swapping noun, build-console terminal
+- Cursor dot + ring, card spotlight (`.fx-card`) and 3D tilt (`.fx-tilt`), button
+  ripple, scroll-progress bar — all delegated from `components/fx/fx-provider.tsx`
 - Scroll-driven reveals (Motion `useScroll`/`whileInView`)
 - Magnetic buttons, text scramble/split-text headings on hero + section titles
 - Animated gradient accents on borders/CTAs, page transitions between routes
@@ -255,3 +258,19 @@ with 3 placeholder case studies + 3 sample blog posts.
   chrome tinting. 3D lazy-loading / `prefers-reduced-motion` handling and
   `next/image`/`next/font` usage were already in place from earlier stages —
   this pass didn't need to touch them.
+- AI-theme retheme (post-stage (h)): palette/fonts/effects ported from the user's
+  "ZYNEX × Fleet Bridge" proposal artifact (claude.ai/artifact/HaGyJWcJY2UgAWVKUR1pCN).
+  Real logo (`public/images/zynex-logo*.webp`, from that artifact) replaces the
+  placeholder SVG wordmark in `components/brand/logo.tsx`. `components/canvas/
+  cosmic-bg.tsx` is the artifact's Originkit nebula shader (adapted: half-res buffer,
+  ~30fps cap, paused when the tab is hidden) mounted site-wide via `PageBackground`
+  (replaces the Dot Matrix background, whose files stay in `components/canvas/`
+  unused); `shadow-play.tsx` is the Originkit volumetric-text component, used in the
+  shared `<Cta/>`. The accretion-disc hero was kept on purpose (user-chosen earlier),
+  retinted cyan/violet. New shared pieces: `components/fx/*` (Eyebrow, SwapText,
+  BuildConsole, FxProvider, ScrollProgress), `components/motion/cascade-text.tsx`,
+  `components/sections/why-zynex.tsx`; `SplitText` takes `*accent*` markup. `Button` is
+  now a mono-uppercase pill with a gradient default variant. `.fx-card` adds
+  `position:relative` — don't put it on fixed/sticky elements. Admin keeps the plain
+  look (no cursor/progress/background fx). Supabase free tier auto-pauses after ~7 idle
+  days (it did, 2026-10-08, and was restored via the MCP) — see README.

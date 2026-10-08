@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { ChatWidget } from "@/components/chat/chat-widget";
+import { FxProvider } from "@/components/fx/fx-provider";
+import { ScrollProgress } from "@/components/fx/scroll-progress";
 import { Footer } from "@/components/layout/footer";
 import { Nav } from "@/components/layout/nav";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
@@ -20,6 +22,8 @@ export function MarketingChrome({ children }: { children: ReactNode }) {
 
   return (
     <>
+      <ScrollProgress />
+      <FxProvider />
       <Nav />
       {children}
       <Footer />

@@ -52,7 +52,7 @@ export function Nav() {
       <div
         className={cn(
           "mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-4 transition-colors duration-300 sm:px-6",
-          scrolled && "glass glow-border",
+          scrolled && "glass glow-border fx-card",
         )}
       >
         <Link href="/" className="py-1" aria-label="ZYNEX home">
@@ -67,15 +67,15 @@ export function Nav() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground",
-                  isActive && "text-foreground",
+                  "relative rounded-full px-3.5 py-2 font-mono text-[0.7rem] tracking-[0.1em] text-muted-foreground uppercase transition-colors hover:text-foreground",
+                  isActive && "text-primary-foreground hover:text-primary-foreground",
                 )}
               >
                 {link.label}
                 {isActive && (
                   <motion.span
                     layoutId="nav-active-pill"
-                    className="absolute inset-0 -z-10 rounded-full bg-white/5"
+                    className="bg-gradient-brand absolute inset-0 -z-10 rounded-full"
                     transition={{ type: "spring", stiffness: 400, damping: 32 }}
                   />
                 )}
@@ -111,9 +111,9 @@ export function Nav() {
                     <Link
                       href={link.href}
                       className={cn(
-                        "rounded-lg px-3 py-2.5 text-base font-medium text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground",
+                        "rounded-lg px-3 py-2.5 font-mono text-sm tracking-[0.1em] text-muted-foreground uppercase transition-colors hover:bg-white/5 hover:text-foreground",
                         (link.href === "/" ? pathname === "/" : pathname.startsWith(link.href)) &&
-                          "bg-white/5 text-foreground",
+                          "bg-white/5 text-brand",
                       )}
                     />
                   }

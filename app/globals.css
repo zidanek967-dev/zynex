@@ -47,10 +47,15 @@
   --color-card: var(--card);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-danger: var(--destructive);
+  --color-dim: var(--dim);
+  --color-line-2: var(--line-2);
 
-  /* ZYNEX brand accents — primary electric blue, secondary neon lime */
+  /* ZYNEX AI theme — primary cyan, secondary violet, tertiary pink */
   --color-brand: var(--brand);
   --color-brand-2: var(--brand-2);
+  --color-brand-3: var(--brand-3);
 
   --radius-sm: calc(var(--radius) * 0.55);
   --radius-md: calc(var(--radius) * 0.8);
@@ -65,55 +70,61 @@
    shadcn primitive that gates on the .dark class still resolves correctly. */
 :root,
 .dark {
-  --background: #07080b;
-  --foreground: #f4f6fa;
+  --background: #05060a;
+  --foreground: #e8ecf5;
 
-  --card: #0e1016;
-  --card-foreground: #f4f6fa;
-  --popover: #0e1016;
-  --popover-foreground: #f4f6fa;
+  --card: #0b0d14;
+  --card-foreground: #e8ecf5;
+  --popover: #0b0d14;
+  --popover-foreground: #e8ecf5;
 
-  --surface: #0e1016;
-  --surface-2: #12141b;
+  --surface: #0b0d14;
+  --surface-2: #11141d;
+  --surface-3: #181c28;
 
-  --primary: #3d6bff;
-  --primary-foreground: #f7f9ff;
+  --primary: #5ef2ff;
+  --primary-foreground: #031418;
 
-  --secondary: #12141b;
-  --secondary-foreground: #f4f6fa;
+  --secondary: #11141d;
+  --secondary-foreground: #e8ecf5;
 
-  --muted: #12141b;
+  --muted: #11141d;
   --muted-foreground: #8b93a7;
 
-  --accent: #151928;
-  --accent-foreground: #f4f6fa;
+  --accent: #181c28;
+  --accent-foreground: #e8ecf5;
 
-  --brand: #3d6bff;
-  --brand-2: #c6ff3e;
+  --brand: #5ef2ff;
+  --brand-2: #a78bfa;
+  --brand-3: #f0abfc;
+  --dim: #566079;
+  --line-2: #2c3348;
 
-  --destructive: #ff5c5c;
-  --success: #3effb0;
+  --destructive: #ff6b7a;
+  --success: #6ee7b7;
 
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #3d6bff;
+  --border: #1c2130;
+  --input: #2c3348;
+  --ring: #5ef2ff;
 
-  --chart-1: #3d6bff;
-  --chart-2: #6e8cff;
-  --chart-3: #c6ff3e;
-  --chart-4: #3effb0;
+  --gradient-brand: linear-gradient(95deg, #5ef2ff, #a78bfa 60%, #f0abfc);
+
+  --chart-1: #5ef2ff;
+  --chart-2: #a78bfa;
+  --chart-3: #f0abfc;
+  --chart-4: #6ee7b7;
   --chart-5: #8b93a7;
 
   --radius: 1rem;
 
-  --sidebar: #0b0d12;
-  --sidebar-foreground: #f4f6fa;
-  --sidebar-primary: #3d6bff;
-  --sidebar-primary-foreground: #f7f9ff;
-  --sidebar-accent: #151928;
-  --sidebar-accent-foreground: #f4f6fa;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #3d6bff;
+  --sidebar: #0b0d14;
+  --sidebar-foreground: #e8ecf5;
+  --sidebar-primary: #5ef2ff;
+  --sidebar-primary-foreground: #031418;
+  --sidebar-accent: #181c28;
+  --sidebar-accent-foreground: #e8ecf5;
+  --sidebar-border: #1c2130;
+  --sidebar-ring: #5ef2ff;
 }
 
 @layer base {
@@ -124,21 +135,31 @@
   html {
     @apply font-sans;
     color-scheme: dark;
+    overflow-x: clip;
   }
 
   body {
     @apply bg-background text-foreground;
-    background-image: radial-gradient(
-        60rem 40rem at 15% -10%,
-        color-mix(in oklab, var(--brand) 14%, transparent),
-        transparent 60%
-      ),
-      radial-gradient(
-        50rem 36rem at 100% 0%,
-        color-mix(in oklab, var(--brand-2) 8%, transparent),
-        transparent 55%
-      );
-    background-attachment: fixed;
+    overflow-x: clip;
+  }
+
+  /* Engineering-grid backdrop that fades out toward the bottom of the viewport. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(94, 242, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(94, 242, 255, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
+  }
+
+  ::selection {
+    background: rgba(94, 242, 255, 0.28);
   }
 
   h1,
@@ -159,18 +180,142 @@
   }
 
   .glass {
-    background-color: color-mix(in oklab, var(--surface) 55%, transparent);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: linear-gradient(180deg, rgba(17, 20, 29, 0.88), rgba(11, 13, 20, 0.88));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--border);
   }
 
   .glow-border {
-    box-shadow: 0 0 0 1px var(--border), 0 0 24px -8px color-mix(in oklab, var(--brand) 60%, transparent);
+    box-shadow: 0 0 0 1px rgba(94, 242, 255, 0.04), 0 24px 60px -34px rgba(94, 242, 255, 0.28);
   }
 
   .text-glow {
-    text-shadow: 0 0 24px color-mix(in oklab, var(--brand) 55%, transparent);
+    text-shadow: 0 0 24px color-mix(in oklab, var(--brand) 45%, transparent);
+  }
+
+  .text-gradient {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-gradient-brand {
+    background-image: var(--gradient-brand);
+  }
+
+  /* Display sizes lifted from the ZYNEX AI theme — fluid, tuned for Unbounded's width. */
+  .h-xl {
+    font-size: clamp(2.1rem, 5vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+
+  .h-lg {
+    font-size: clamp(1.7rem, 3.8vw, 3.1rem);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+  }
+
+  .h-md {
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  /* Card with a cursor-following spotlight (--mx/--my set by <FxProvider/>). */
+  .fx-card {
+    position: relative;
+    isolation: isolate;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .fx-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(94, 242, 255, 0.12),
+      transparent 45%
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .fx-card:hover {
+    border-color: var(--line-2);
+    box-shadow: 0 0 0 1px rgba(94, 242, 255, 0.16), 0 24px 60px -30px rgba(94, 242, 255, 0.22);
+  }
+
+  .fx-card:hover::before {
+    opacity: 1;
+  }
+
+  .fx-tilt {
+    will-change: transform;
+    transition:
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+      border-color 0.3s,
+      box-shadow 0.3s;
+  }
+
+  /* Terminal / console panel with a rotating conic-gradient border. */
+  .term-panel {
+    position: relative;
+    border-radius: 18px;
+    border: 1px solid var(--line-2);
+    background: linear-gradient(180deg, rgba(17, 20, 29, 0.92), rgba(8, 10, 16, 0.92));
+    box-shadow:
+      0 0 0 1px rgba(94, 242, 255, 0.06),
+      0 30px 80px rgba(0, 0, 0, 0.6),
+      0 0 60px rgba(94, 242, 255, 0.08);
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+  }
+
+  .term-panel::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from var(--ang, 0deg), transparent 0 70%, #5ef2ff 80%, #a78bfa 90%, transparent);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: spin-border 5s linear infinite;
+    pointer-events: none;
+  }
+
+  .live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: var(--brand);
+    box-shadow: 0 0 0 0 rgba(94, 242, 255, 0.7);
+    animation: ping-dot 2s infinite;
+  }
+
+  /* Hero headline letter-cascade */
+  .cascade-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: 0.08em;
+  }
+
+  .cascade-ch {
+    display: inline-block;
+    animation: cascade-in 0.75s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+    animation-delay: calc(var(--i) * 20ms + 150ms);
   }
 
   .marquee-mask {
@@ -192,8 +337,63 @@
   }
 }
 
+@property --ang {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes spin-border {
+  to {
+    --ang: 360deg;
+  }
+}
+
+@keyframes ping-dot {
+  70% {
+    box-shadow: 0 0 0 9px rgba(94, 242, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(94, 242, 255, 0);
+  }
+}
+
+@keyframes cascade-in {
+  from {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+}
+
+@keyframes float-y {
+  50% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Custom cursor — only mounted on fine-pointer devices (see <FxProvider/>). */
+body.cursor-on,
+body.cursor-on * {
+  cursor: none !important;
+}
+
+body.cursor-on input,
+body.cursor-on textarea {
+  cursor: text !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .term-panel::before,
+  .live-dot,
+  .cascade-ch {
     animation: none;
   }
 }

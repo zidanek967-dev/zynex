@@ -5,6 +5,7 @@ import { ServiceDetail } from "@/components/sections/service-detail";
 import { Reveal } from "@/components/motion/reveal";
 import { SplitText } from "@/components/motion/split-text";
 import { SERVICES } from "@/lib/data/services";
+import { Eyebrow } from "@/components/fx/eyebrow";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -38,13 +39,11 @@ export default function ServicesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }}
       />
       <Reveal className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center">
-        <span className="text-xs font-semibold tracking-widest text-brand uppercase">
-          Services
-        </span>
+        <Eyebrow live>Services</Eyebrow>
         <SplitText
           as="h1"
-          text="Seven ways to ship faster with AI"
-          className="max-w-3xl font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl"
+          text="Seven ways to *ship faster* with AI"
+          className="max-w-3xl h-xl text-balance"
         />
         <p className="max-w-xl text-muted-foreground sm:text-lg">
           One AI-accelerated process, built around what you actually need — from a

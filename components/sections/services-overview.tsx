@@ -9,6 +9,7 @@ import { SplitText } from "@/components/motion/split-text";
 import { MagneticDock } from "@/components/ui/magnetic-dock";
 import { SERVICE_ICONS } from "@/lib/data/service-icons";
 import { SERVICES } from "@/lib/data/services";
+import { Eyebrow } from "@/components/fx/eyebrow";
 
 export function ServicesOverview() {
   const router = useRouter();
@@ -26,13 +27,11 @@ export function ServicesOverview() {
   return (
     <section id="services" className="mx-auto max-w-6xl px-6">
       <Reveal className="flex flex-col items-center gap-3 text-center">
-        <span className="text-xs font-semibold tracking-widest text-brand uppercase">
-          What we build
-        </span>
+        <Eyebrow>What we build</Eyebrow>
         <SplitText
           as="h2"
-          text="Seven ways to ship faster with AI"
-          className="font-display text-3xl font-semibold tracking-tight sm:text-4xl"
+          text="Seven ways to *ship faster* with AI"
+          className="h-lg"
         />
         <p className="max-w-xl text-muted-foreground">
           From a first landing page to a full AI agent — one team, one AI-accelerated

@@ -35,10 +35,15 @@ function Counter({ value, prefix, suffix }: { value: number; prefix?: string; su
   const shown = prefersReducedMotion ? value : display;
 
   return (
-    <span ref={ref} className="text-glow font-display text-5xl font-semibold tracking-tight sm:text-6xl">
+    <span
+      ref={ref}
+      className="text-gradient font-display text-[clamp(1.9rem,4.4vw,3rem)] leading-none font-bold tracking-tight whitespace-nowrap"
+    >
       {prefix}
       {shown}
-      {suffix}
+      {suffix ? (
+        <span className={/^\s?[a-z]/i.test(suffix) ? "text-[0.45em]" : undefined}>{suffix}</span>
+      ) : null}
     </span>
   );
 }
@@ -46,7 +51,7 @@ function Counter({ value, prefix, suffix }: { value: number; prefix?: string; su
 export function Stats() {
   return (
     <section className="mx-auto max-w-6xl px-6">
-      <div className="glass glow-border grid grid-cols-2 gap-10 rounded-3xl px-8 py-12 sm:grid-cols-4 sm:gap-6">
+      <div className="glass glow-border fx-card grid grid-cols-2 gap-10 rounded-3xl px-8 py-12 sm:grid-cols-4 sm:gap-6">
         {STATS.map((stat) => (
           <div key={stat.label} className="flex flex-col items-center gap-2 text-center">
             <Counter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />

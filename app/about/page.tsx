@@ -5,6 +5,7 @@ import { Cta } from "@/components/sections/cta";
 import { Team } from "@/components/sections/team";
 import { Reveal } from "@/components/motion/reveal";
 import { SplitText } from "@/components/motion/split-text";
+import { Eyebrow } from "@/components/fx/eyebrow";
 
 export const metadata: Metadata = {
   title: "About",
@@ -34,11 +35,11 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col gap-24 py-24 sm:py-32">
       <Reveal className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center">
-        <span className="text-xs font-semibold tracking-widest text-brand uppercase">About</span>
+        <Eyebrow live>About</Eyebrow>
         <SplitText
           as="h1"
-          text="Software, built at the speed of AI"
-          className="max-w-3xl font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl"
+          text="Software, built at the *speed of AI*"
+          className="max-w-3xl h-xl text-balance"
         />
         <p className="max-w-xl text-muted-foreground sm:text-lg">
           ZYNEX is an AI-powered product studio based in the UAE, building websites,
@@ -48,9 +49,7 @@ export default function AboutPage() {
 
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-6 lg:grid-cols-2">
         <Reveal>
-          <span className="text-xs font-semibold tracking-widest text-brand uppercase">
-            Our story
-          </span>
+          <Eyebrow>Our story</Eyebrow>
           <h2 className="mt-3 font-display text-2xl font-semibold text-foreground sm:text-3xl">
             Built because good software took too long
           </h2>
@@ -71,10 +70,8 @@ export default function AboutPage() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="glass glow-border h-full rounded-3xl border border-border p-8">
-            <span className="text-xs font-semibold tracking-widest text-brand uppercase">
-              Mission
-            </span>
+          <div className="glass glow-border fx-card h-full rounded-3xl border border-border p-8">
+            <Eyebrow>Mission</Eyebrow>
             <p className="mt-4 font-display text-2xl font-semibold text-foreground sm:text-3xl">
               Make world-class software achievable on a startup timeline —
               without a startup&apos;s headcount.
@@ -89,10 +86,8 @@ export default function AboutPage() {
 
       <section className="mx-auto w-full max-w-6xl px-6">
         <Reveal className="flex flex-col items-center gap-3 text-center">
-          <span className="text-xs font-semibold tracking-widest text-brand uppercase">
-            Why AI-built
-          </span>
-          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+          <Eyebrow>Why AI-built</Eyebrow>
+          <h2 className="h-lg">
             Faster doesn&apos;t mean cut corners
           </h2>
         </Reveal>

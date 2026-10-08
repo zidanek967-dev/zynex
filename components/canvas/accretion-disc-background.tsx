@@ -37,8 +37,8 @@ export function AccretionDiscBackground() {
         <Suspense fallback={<StaticFallback />}>
           <AccretionDisc
             background="transparent"
-            baseColor="#3D6BFF"
-            accentColor="#C6FF3E"
+            baseColor="#5EF2FF"
+            accentColor="#A78BFA"
             density={55}
             disc={{ arms: 8, core: 6, tilt: 44 }}
             jets={{ amount: 23, length: 300, spread: 34 }}

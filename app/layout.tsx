@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Unbounded } from "next/font/google";
 import "./globals.css";
 
 import { MarketingChrome } from "@/components/layout/marketing-chrome";
@@ -7,13 +7,13 @@ import { PageBackground } from "@/components/layout/page-background";
 import { PageTransition } from "@/components/motion/page-transition";
 import { SmoothScrollProvider } from "@/components/motion/smooth-scroll-provider";
 
-const inter = Inter({
+const geist = Geist({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const unbounded = Unbounded({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07080B",
+  themeColor: "#05060A",
   colorScheme: "dark",
 };
 
@@ -79,7 +79,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} dark h-full antialiased`}
+      className={`${geist.variable} ${unbounded.variable} ${geistMono.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <script

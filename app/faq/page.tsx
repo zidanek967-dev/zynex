@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { FAQS } from "@/lib/data/faqs";
+import { Eyebrow } from "@/components/fx/eyebrow";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -38,11 +39,11 @@ export default function FaqPage() {
       />
 
       <Reveal className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center">
-        <span className="text-xs font-semibold tracking-widest text-brand uppercase">FAQ</span>
+        <Eyebrow live>FAQ</Eyebrow>
         <SplitText
           as="h1"
-          text="Questions, answered"
-          className="max-w-3xl font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl"
+          text="Questions, *answered*"
+          className="max-w-3xl h-xl text-balance"
         />
       </Reveal>
 

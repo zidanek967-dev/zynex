@@ -110,7 +110,7 @@ export function QuoteBuilder() {
 
   if (submitted) {
     return (
-      <Reveal className="glass glow-border flex flex-col items-center gap-3 rounded-3xl border border-border p-10 text-center">
+      <Reveal className="glass glow-border fx-card flex flex-col items-center gap-3 rounded-3xl border border-border p-10 text-center">
         <CheckCircle2 className="size-10 text-success" />
         <h3 className="font-display text-xl font-semibold text-foreground">Got it — thank you</h3>
         <p className="max-w-sm text-sm text-muted-foreground">
@@ -122,7 +122,7 @@ export function QuoteBuilder() {
   }
 
   return (
-    <div className="glass glow-border rounded-3xl border border-border p-6 sm:p-8">
+    <div className="glass glow-border fx-card rounded-3xl border border-border p-6 sm:p-8">
       <div className="mb-8 flex items-center gap-2">
         {STEP_TITLES.map((title, i) => (
           <div key={title} className="flex flex-1 flex-col gap-2">
