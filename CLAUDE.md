@@ -64,8 +64,7 @@ Shadows: soft ambient shadow + colored glow shadow variant using `--brand` at lo
 - Body: **Geist**; mono labels/buttons/eyebrows: **Geist Mono**
 
 **Motion language:**
-- Hero: raw-WebGL accretion disc (components/canvas) over a site-wide cosmic nebula
-  background; letter-cascade headline, swapping noun, build-console terminal
+- Hero: letter-cascade headline over the site-wide cosmic nebula background, swapping noun, build-console terminal
 - Cursor dot + ring, card spotlight (`.fx-card`) and 3D tilt (`.fx-tilt`), button
   ripple, scroll-progress bar — all delegated from `components/fx/fx-provider.tsx`
 - Scroll-driven reveals (Motion `useScroll`/`whileInView`)
@@ -182,14 +181,10 @@ with 3 placeholder case studies + 3 sample blog posts.
 
 ## Notes / deviations
 
-- Hero background is a raw WebGL accretion-disc effect (user-supplied
-  "Accretion Disc — Originkit" component, `components/canvas/accretion-disc.tsx`;
-  superseded an earlier "Particle Drift" version and, before that, an R3F
-  icosahedron/particle-sphere from stage (c) — all raw-WebGL/R3F hero
-  experiments live under `components/canvas/`, only the current one is wired
-  into `Hero`). `@react-three/fiber` / `@react-three/drei` stay installed per
-  the stack
-  requirement above for any future 3D scene, just unused by the hero today.
+- The hero has no dedicated 3D/canvas background any more: earlier iterations (R3F
+  sphere, "Particle Drift", then the Originkit "Accretion Disc") were all removed; the
+  hero sits on the site-wide cosmic nebula. `@react-three/fiber` / `@react-three/drei`
+  stay installed per the stack requirement for any future 3D scene, unused today.
 - Stage (e) — Contact page (`app/contact/`): quote builder is hand-rolled with
   `react-hook-form` + `zod` rather than shadcn's `form.tsx` — the shadcn CLI
   silently no-ops on `add form` for the `base-nova` (Base UI) style/registry
@@ -266,8 +261,8 @@ with 3 placeholder case studies + 3 sample blog posts.
   ~30fps cap, paused when the tab is hidden) mounted site-wide via `PageBackground`
   (replaces the Dot Matrix background, whose files stay in `components/canvas/`
   unused); `shadow-play.tsx` is the Originkit volumetric-text component, used in the
-  shared `<Cta/>`. The accretion-disc hero was kept on purpose (user-chosen earlier),
-  retinted cyan/violet. New shared pieces: `components/fx/*` (Eyebrow, SwapText,
+  shared `<Cta/>`. The accretion-disc hero background was removed at the user's request
+  (`accretion-disc*.tsx` deleted; recoverable from git history, commit 48d29c5). New shared pieces: `components/fx/*` (Eyebrow, SwapText,
   BuildConsole, FxProvider, ScrollProgress), `components/motion/cascade-text.tsx`,
   `components/sections/why-zynex.tsx`; `SplitText` takes `*accent*` markup. `Button` is
   now a mono-uppercase pill with a gradient default variant. `.fx-card` adds
